@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="loadindialog" parent="@android:style/Theme.Dialog">
+          <item name="android:backgroundDimEnabled">false</item><!--activity不变暗-->
+    </style>
+
+
+    <style name="BaseDialog" parent="android:Theme.Light">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="HeaderTextView">
+        <item name="android:background">@color/app_text_blue_bg</item>
+    </style>
+</resources>
