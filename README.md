@@ -9,6 +9,7 @@
 /plugins/android/lib/templates/mac （这个是MAC电脑的目录），window电脑结构差不多，具体里面上面含义或者怎么使用可以看下网上教程
 
 下面放一个mvp结构的目录，里面文件夹的名字很清楚了，大家可以自己参考
+<img src="https://github.com/fafawee/fmvp/blob/master/pic/1578644802920.jpg" alt="Sample"  width="380" height="600" >  
 
 ## 依赖方式
 因为如果你们要用，最好是源码的形式导入，因为肯定会根据这个结构会做修改和调整，所以我没有上传到jitpack了，不提供gradle的依赖
