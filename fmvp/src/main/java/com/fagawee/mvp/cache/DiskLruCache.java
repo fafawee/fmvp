@@ -338,6 +338,7 @@ public final class DiskLruCache implements Closeable {
         directory.mkdirs();
         cache = new DiskLruCache(directory, appVersion, valueCount, maxSize);
         cache.rebuildJournal();
+
         return cache;
     }
 
@@ -455,6 +456,8 @@ public final class DiskLruCache implements Closeable {
         writer.close();
         journalFileTmp.renameTo(journalFile);
         journalWriter = new BufferedWriter(new FileWriter(journalFile, true), IO_BUFFER_SIZE);
+        Writer j=journalWriter;
+        checkNotClosed();
     }
 
     private static void deleteIfExists(File file) throws IOException {
@@ -476,6 +479,7 @@ public final class DiskLruCache implements Closeable {
      * the head of the LRU queue.
      */
     public synchronized Snapshot get(String key) throws IOException {
+
         checkNotClosed();
         validateKey(key);
         Entry entry = lruEntries.get(key);

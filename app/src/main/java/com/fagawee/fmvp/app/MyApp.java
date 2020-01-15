@@ -5,12 +5,15 @@ import com.fagawee.mvp.BaseApp;
 import com.fagawee.mvp.net.NetProvider;
 import com.fagawee.mvp.net.RequestHandler;
 import com.fagawee.mvp.net.XApi;
+import com.fagawee.mvp.net.cache.CacheInterceptor;
+import com.fagawee.mvp.net.cache.Cacher;
 import com.fagawee.netwindow.NetInterpoter;
 import com.fagawee.netwindow.NetWindow;
 
 import okhttp3.CookieJar;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * Created by Mr.Tian on 2020/1/9.
@@ -22,7 +25,29 @@ public class MyApp extends BaseApp {
         super.onCreate();
         Utils.init(this);
         initNet();
-        initNet();
+        Cacher.init(this);
+        //Cacher.instance.clearAllCache();
+        Cacher.instance.setCacheConfig(new Cacher.ICacheConfig() {
+            @Override
+            public String getKey(Request request) {
+                return request.url().toString();
+            }
+
+            @Override
+            public long getDuration(Request request) {
+                return 30000;
+            }
+
+            @Override
+            public boolean isCacheFilter(Request request) {
+                return true;
+            }
+
+            @Override
+            public Cacher.CacheType cacheType(Request request) {
+                return Cacher.CacheType.OnlyCache;
+            }
+        });
     }
 
 
@@ -33,7 +58,8 @@ public class MyApp extends BaseApp {
             @Override
             public Interceptor[] configInterceptors() {
                 NetInterpoter interpoter=new NetInterpoter();
-                return new Interceptor[]{interpoter};
+                CacheInterceptor cacheInterceptor =new CacheInterceptor();
+                return new Interceptor[]{cacheInterceptor,interpoter};
             }
 
             @Override

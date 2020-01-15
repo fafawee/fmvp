@@ -125,6 +125,7 @@ public class DiskCache implements ICache {
 
     public boolean contains(String key) {
         try {
+
             DiskLruCache.Snapshot snapshot = cache.get(getMd5Key(key));
             return snapshot != null;
         } catch (IOException e) {

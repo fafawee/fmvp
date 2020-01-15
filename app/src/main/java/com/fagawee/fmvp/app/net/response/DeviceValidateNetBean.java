@@ -60,4 +60,14 @@ public class DeviceValidateNetBean {
     public void setData(String data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "DeviceValidateNetBean{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", seed='" + seed + '\'' +
+                ", data='" + data + '\'' +
+                '}';
+    }
 }

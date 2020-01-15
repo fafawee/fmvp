@@ -25,6 +25,7 @@ public class LogInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         logRequest(request);
+
         Response response = chain.proceed(request);
         return logResponse(response);
     }
